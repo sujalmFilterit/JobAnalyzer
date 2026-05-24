@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyze Job — Fake Job Detector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <link rel="stylesheet" href="/static/analyze.css" />
+</head>
+
+<body class="analyze-body">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-grid"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar--scrolled" id="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <span>FakeJob<strong>Detector</strong></span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-actions">
+                <span class="nav-status-dot"></span>
+                <span class="nav-status-text">AI Online</span>
+                <span class="nav-user-name" id="navUserName"></span>
+                <button onclick="logout()" class="nav-btn-ghost">Logout</button>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-drawer" id="navDrawer">
+            <a href="/" class="nav-drawer-link">Home</a>
+            <a href="/#features" class="nav-drawer-link">Features</a>
+            <a href="/login" class="nav-drawer-link">Login</a>
+            <a href="/signup" class="nav-drawer-link">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <!-- <div class="analyze-header">
+        <div class="analyze-header-inner">
+            <div class="analyze-breadcrumb">
+                <a href="/">Home</a>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
+                <span>Analyze Job</span>
+            </div>
+            <h1 class="analyze-page-title">Job Scam Analyzer</h1>
+            <p class="analyze-page-sub">Paste any job posting details below. Our AI will analyze it and return a full
+                scam risk report in seconds.</p>
+        </div>
+    </div> -->
+
+    <!-- MAIN ANALYZER -->
+    <main class="analyze-main">
+        <div class="analyze-main-inner">
+
+            <!-- LEFT: FORM -->
+            <div class="analyze-form-panel">
+                <div class="panel-header">
+                    <div class="panel-header-icon panel-header-icon--blue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="panel-title">Job Details</p>
+                        <p class="panel-sub">Fill in what you know — more detail = better accuracy</p>
+                    </div>
+                </div>
+
+                <form class="form" id="analyzeForm" onsubmit="return false;">
+                    <div class="field">
+                        <label for="job-title">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                            </svg>
+                            Job Title
+                        </label>
+                        <input id="job-title" type="text" placeholder="e.g. Senior Software Engineer"
+                            autocomplete="off" />
+                    </div>
+
+                    <div class="field">
+                        <label for="company">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                            Company Name
+                        </label>
+                        <input id="company" type="text" placeholder="e.g. Microsoft Corporation" autocomplete="off" />
+                    </div>
+
+                    <div class="analyze-field-row">
+                        <div class="field">
+                            <label for="salary">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                                Salary Info
+                            </label>
+                            <input id="salary" type="text" placeholder="e.g. $80,000 – $120,000 / year"
+                                autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <label for="location">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                Location
+                            </label>
+                            <input id="location" type="text" placeholder="e.g. Remote / New York" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="field field--grow">
+                        <label for="description">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg>
+                            Job Description
+                            <span class="field-optional">required</span>
+                        </label>
+                        <textarea id="description"
+                            placeholder="Paste the full job description here. The more text you provide, the more accurate the AI analysis will be..."></textarea>
+                    </div>
+
+                    <button class="btn" type="submit" id="analyzeBtn">
+                        <span class="btn-inner">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="m21 21-4.35-4.35" />
+                            </svg>
+                            Analyze Job Posting
+                        </span>
+                    </button>
+
+                    <p class="analyze-hint">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        Only the job description is required. Other fields improve accuracy.
+                    </p>
+                </form>
+            </div>
+
+            <!-- RIGHT: RESULT -->
+            <div class="analyze-result-panel">
+                <div class="panel-header">
+                    <div class="panel-header-icon panel-header-icon--purple">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="panel-title">Analysis Result</p>
+                        <p class="panel-sub" id="resultSubtitle">Waiting for input...</p>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div class="result-empty" id="emptyState">
+                    <div class="result-empty-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <p class="result-empty-title">No analysis yet</p>
+                    <p class="result-empty-sub">Fill in the job details on the left and click "Analyze Job Posting" to
+                        get your full scam risk report.</p>
+                    <div class="result-empty-tips">
+                        <p class="result-empty-tips-title">What we check:</p>
+                        <div class="result-empty-tip-item"><span class="tip-dot tip-dot--blue"></span>AI pattern
+                            recognition</div>
+                        <div class="result-empty-tip-item"><span class="tip-dot tip-dot--purple"></span>Company database
+                            lookup</div>
+                        <div class="result-empty-tip-item"><span class="tip-dot tip-dot--green"></span>Salary range
+                            validation</div>
+                        <div class="result-empty-tip-item"><span class="tip-dot tip-dot--red"></span>Suspicious keyword
+                            scan</div>
+                    </div>
+                </div>
+
+                <!-- Loader -->
+                <div class="analyze-loader" id="analyzeLoader" style="display:none;">
+                    <div class="analyze-loader-spinner">
+                        <div class="spinner-ring"></div>
+                    </div>
+                    <p class="analyze-loader-title">Analyzing with AI...</p>
+                    <div class="analyze-loader-steps" id="loaderSteps">
+                        <div class="loader-step loader-step--active" id="step1">
+                            <div class="loader-step-dot"></div>
+                            <span>Processing job description</span>
+                        </div>
+                        <div class="loader-step" id="step2">
+                            <div class="loader-step-dot"></div>
+                            <span>Running ML model</span>
+                        </div>
+                        <div class="loader-step" id="step3">
+                            <div class="loader-step-dot"></div>
+                            <span>Verifying company</span>
+                        </div>
+                        <div class="loader-step" id="step4">
+                            <div class="loader-step-dot"></div>
+                            <span>Generating report</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result box (filled by JS) -->
+                <div class="result-box" id="resultBox" style="display:none;"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Navbar hamburger
+        const hamburger = document.getElementById('navHamburger');
+        const drawer = document.getElementById('navDrawer');
+        hamburger.addEventListener('click', () => {
+            drawer.classList.toggle('nav-drawer--open');
+            hamburger.classList.toggle('nav-hamburger--open');
+        });
+
+        // Show logged-in user name in navbar
+        fetch('/auth/me', { credentials: 'include' })
+            .then(r => r.json())
+            .then(d => {
+                if (d.ok) {
+                    const el = document.getElementById('navUserName');
+                    if (el) el.textContent = '👤 ' + d.name;
+                }
+            });
+
+        // Logout
+        async function logout() {
+            await fetch('/auth/logout', { method: 'POST', credentials: 'include' });
+            window.location.href = '/login';
+        }
+
+        // Animated loader steps
+        function animateSteps() {
+            const steps = ['step1', 'step2', 'step3', 'step4'];
+            let i = 0;
+            return setInterval(() => {
+                steps.forEach(s => document.getElementById(s).classList.remove('loader-step--active', 'loader-step--done'));
+                if (i > 0) document.getElementById(steps[i - 1]).classList.add('loader-step--done');
+                if (i < steps.length) document.getElementById(steps[i]).classList.add('loader-step--active');
+                i++;
+                if (i > steps.length) i = 0;
+            }, 600);
+        }
+
+        // Override the form submit from script.js to use the new UI elements
+        const analyzeForm = document.getElementById('analyzeForm');
+        const emptyState = document.getElementById('emptyState');
+        const loader = document.getElementById('analyzeLoader');
+        const resultBox = document.getElementById('resultBox');
+        const subtitle = document.getElementById('resultSubtitle');
+        let stepInterval;
+
+        analyzeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const desc = document.getElementById('description').value.trim();
+            const company = document.getElementById('company').value.trim();
+            if (!desc) { alert('Please enter a job description.'); return; }
+
+            // Show loader
+            emptyState.style.display = 'none';
+            resultBox.style.display = 'none';
+            loader.style.display = 'flex';
+            subtitle.textContent = 'Analyzing...';
+            stepInterval = animateSteps();
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ description: desc, company: company })
+                });
+                const result = await response.json();
+                clearInterval(stepInterval);
+                loader.style.display = 'none';
+
+                const isFraud = result.result.toLowerCase().includes('suspicious') || result.result.toLowerCase().includes('fraudulent');
+                const accentColor = isFraud ? '#ef4444' : '#22c55e';
+                const accentBg = isFraud ? 'rgba(239,68,68,0.08)' : 'rgba(34,197,94,0.08)';
+                const accentBdr = isFraud ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)';
+                const verdictIcon = isFraud
+                    ? `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`
+                    : `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`;
+
+                let companyHTML = '';
+                if (company) {
+                    if (result.company_exists) {
+                        const info = result.company_info;
+                        companyHTML = `
+              <div class="res-company-card res-company-card--verified">
+                <div class="res-company-header">
+                  <div class="res-company-badge res-company-badge--green">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Verified Company
+                  </div>
+                  <span class="res-company-rating">⭐ ${info.rating} <span class="res-company-reviews">(${info.reviews} reviews)</span></span>
+                </div>
+                <p class="res-company-name">${result.matched_company}</p>
+                <div class="res-company-grid">
+                  <div class="res-company-item"><span class="res-company-item-label">Type</span><span class="res-company-item-val">${info.company_type}</span></div>
+                  <div class="res-company-item"><span class="res-company-item-label">Industry</span><span class="res-company-item-val">${info.industry}</span></div>
+                  <div class="res-company-item"><span class="res-company-item-label">Founded</span><span class="res-company-item-val">${info.age}</span></div>
+                  <div class="res-company-item"><span class="res-company-item-label">Employees</span><span class="res-company-item-val">${info.employees}</span></div>
+                </div>
+                <div class="res-company-location">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  ${info.location}
+                </div>
+              </div>`;
+                    } else {
+                        companyHTML = `
+              <div class="res-company-card res-company-card--unverified">
+                <div class="res-company-badge res-company-badge--red">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Company Not Found
+                </div>
+                <p class="res-company-warn">The company "<strong>${company}</strong>" could not be verified in our corporate database. This is a significant red flag.</p>
+              </div>`;
+                    }
+                }
+
+                subtitle.textContent = isFraud ? 'High risk detected' : 'Analysis complete';
+                resultBox.style.display = 'block';
+                resultBox.innerHTML = `
+          <div class="res-wrap">
+            <div class="res-verdict" style="background:${accentBg}; border-color:${accentBdr};">
+              <div class="res-verdict-icon" style="color:${accentColor};">${verdictIcon}</div>
+              <div class="res-verdict-body">
+                <p class="res-verdict-text" style="color:${accentColor};">${result.result}</p>
+                <p class="res-verdict-conf">AI Confidence: <strong style="color:${accentColor};">${result.confidence}</strong></p>
+              </div>
+            </div>
+            ${companyHTML}
+          </div>`;
+
+            } catch (err) {
+                clearInterval(stepInterval);
+                loader.style.display = 'none';
+                subtitle.textContent = 'Error';
+                resultBox.style.display = 'block';
+                resultBox.innerHTML = `<div style="padding:24px;text-align:center;color:#ef4444;font-size:0.875rem;">Could not connect to the API. Make sure the server is running at <strong>127.0.0.1:8000</strong>.</div>`;
+            }
+        });
+    </script>
+</body>
+
+</html>

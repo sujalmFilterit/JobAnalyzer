@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fake Job Detector — AI-Powered Scam Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+
+  <!-- Background ambient orbs -->
+  <div class="bg-orb bg-orb--1"></div>
+  <div class="bg-orb bg-orb--2"></div>
+  <div class="bg-grid"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <span>FakeJob<strong>Detector</strong></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#about" class="nav-link">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <span class="nav-status-dot"></span>
+        <span class="nav-status-text">AI Online</span>
+        <a href="/login" class="nav-btn-outline">Login</a>
+        <a href="/signup" class="nav-btn-fill">Sign Up</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="nav-drawer" id="navDrawer">
+      <a href="#features" class="nav-drawer-link">Features</a>
+      <a href="#how-it-works" class="nav-drawer-link">How It Works</a>
+      <a href="#about" class="nav-drawer-link">About</a>
+      <a href="/login" class="nav-drawer-link">Login</a>
+      <a href="/signup" class="nav-drawer-link">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          AI-Powered Detection
+        </div>
+        <h1 class="hero-heading">
+          Detect Fake Jobs<br />
+          <span class="hero-heading-accent">Before They Scam You</span>
+        </h1>
+        <p class="hero-sub">
+          Paste any job posting and our AI instantly analyzes it for red flags, verifies the company, and gives you a
+          scam risk score — in seconds.
+        </p>
+        <div class="hero-ctas">
+          <a href="/analyze" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            Analyze a Job
+          </a>
+          <a href="#how-it-works" class="btn-ghost">
+            How It Works
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">98.4%</span>
+            <span class="hero-stat-label">AI Accuracy</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">50K+</span>
+            <span class="hero-stat-label">Jobs Analyzed</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">&lt;2s</span>
+            <span class="hero-stat-label">Analysis Time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Mini dashboard mockup -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="mockup-title">Live Analysis</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-risk-row">
+              <span class="mockup-label">Scam Risk Score</span>
+              <span class="mockup-risk-badge mockup-risk-high">HIGH RISK</span>
+            </div>
+            <div class="mockup-meter-track">
+              <div class="mockup-meter-fill" style="width: 78%"></div>
+            </div>
+            <div class="mockup-meter-labels">
+              <span>Safe</span><span>78%</span><span>Danger</span>
+            </div>
+            <div class="mockup-flags">
+              <div class="mockup-flag-item mockup-flag-red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Unverified company domain
+              </div>
+              <div class="mockup-flag-item mockup-flag-red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Unrealistic salary promise
+              </div>
+              <div class="mockup-flag-item mockup-flag-yellow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                Vague job requirements
+              </div>
+              <div class="mockup-flag-item mockup-flag-green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Company found in database
+              </div>
+            </div>
+            <div class="mockup-verdict">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Likely Fraudulent — Proceed with caution
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating confidence card -->
+        <div class="float-card float-card--confidence">
+          <div class="float-card-icon float-card-icon--blue">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <p class="float-card-label">AI Confidence</p>
+            <p class="float-card-value">94.7%</p>
+          </div>
+        </div>
+
+        <!-- Floating verified card -->
+        <div class="float-card float-card--verified">
+          <div class="float-card-icon float-card-icon--green">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <div>
+            <p class="float-card-label">Company Verified</p>
+            <p class="float-card-value float-card-value--green">In Database</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUSTED BY ── -->
+  <section class="trusted">
+    <p class="trusted-label">Trusted by students &amp; professionals at</p>
+    <div class="trusted-logos">
+      <span class="trusted-logo">MIT</span>
+      <span class="trusted-logo">Stanford</span>
+      <span class="trusted-logo">IIT Delhi</span>
+      <span class="trusted-logo">Google</span>
+      <span class="trusted-logo">Microsoft</span>
+      <span class="trusted-logo">Infosys</span>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2 class="section-heading">Everything you need to stay safe</h2>
+      <p class="section-sub">Six layers of AI-powered protection working together to catch scams before they catch you.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 class="feature-title">AI Scam Detection</h3>
+          <p class="feature-desc">Our ML model trained on thousands of real and fake job postings identifies fraudulent
+            patterns with 98%+ accuracy.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--purple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Company Validation</h3>
+          <p class="feature-desc">Cross-references the company name against our verified corporate database using fuzzy
+            matching to catch imposters.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--cyan">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Salary Analysis</h3>
+          <p class="feature-desc">Flags unrealistic salary promises that are a hallmark of job scams — too good to be
+            true usually is.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--red">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Keyword Detection</h3>
+          <p class="feature-desc">Scans for suspicious phrases like "work from home", "no experience needed", and "wire
+            transfer" that signal fraud.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Domain Verification</h3>
+          <p class="feature-desc">Checks if the company's email domain matches a legitimate business or is a
+            free/disposable email provider.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Real-time Confidence</h3>
+          <p class="feature-desc">Every result comes with a probability score so you know exactly how confident the AI
+            is in its verdict.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">Process</div>
+      <h2 class="section-heading">Three steps to safety</h2>
+      <p class="section-sub">From paste to verdict in under two seconds.</p>
+
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-content">
+            <h3 class="how-step-title">Paste Job Details</h3>
+            <p class="how-step-desc">Copy the job title, company name, salary, and description from any job board and
+              paste it into the analyzer.</p>
+          </div>
+        </div>
+        <div class="how-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-content">
+            <h3 class="how-step-title">AI Analyzes It</h3>
+            <p class="how-step-desc">Our model processes the text, verifies the company, checks salary ranges, and scans
+              for red-flag keywords.</p>
+          </div>
+        </div>
+        <div class="how-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-content">
+            <h3 class="how-step-title">Get Your Report</h3>
+            <p class="how-step-desc">Receive a detailed scam risk report with confidence score, red flags, and company
+              verification status.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ANALYZER ── -->
+  <section class="analyzer-section" id="analyzer">
+    <div class="section-inner">
+      <div class="section-label">Analyzer</div>
+      <h2 class="section-heading">Analyze a job posting now</h2>
+      <p class="section-sub">Free to use. No account required. Results in seconds.</p>
+
+      <div class="analyzer-card">
+
+        <!-- LEFT: Form -->
+        <div class="analyzer-left">
+          <div class="analyzer-left-header">
+            <div class="analyzer-left-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </div>
+            <div>
+              <p class="analyzer-left-title">Job Details</p>
+              <p class="analyzer-left-sub">Fill in what you know</p>
+            </div>
+          </div>
+
+          <form class="form" onsubmit="return false;">
+            <div class="field">
+              <label for="job-title">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+                Job Title
+              </label>
+              <input id="job-title" type="text" placeholder="e.g. Senior Software Engineer" autocomplete="off" />
+            </div>
+
+            <div class="field">
+              <label for="company">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Company Name
+              </label>
+              <input id="company" type="text" placeholder="e.g. Microsoft Corporation" autocomplete="off" />
+            </div>
+
+            <div class="field">
+              <label for="salary">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Salary Info
+              </label>
+              <input id="salary" type="text" placeholder="e.g. $80,000 – $120,000 / year" autocomplete="off" />
+            </div>
+
+            <div class="field field--grow">
+              <label for="description">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                Job Description
+              </label>
+              <textarea id="description" placeholder="Paste the full job description here..."></textarea>
+            </div>
+
+            <button class="btn" type="submit">
+              <span class="btn-inner">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                Analyze Job Posting
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: Result -->
+        <div class="analyzer-right">
+          <div class="analyzer-right-header">
+            <div class="analyzer-right-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <div>
+              <p class="analyzer-right-title">Analysis Result</p>
+              <p class="analyzer-right-sub">Results will appear here after analysis</p>
+            </div>
+          </div>
+
+          <div class="result-box">
+            <!-- Empty state -->
+            <div class="result-empty">
+              <div class="result-empty-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <p class="result-empty-title">No analysis yet</p>
+              <p class="result-empty-sub">Fill in the job details on the left and click "Analyze Job Posting" to get
+                your scam risk report.</p>
+            </div>
+          </div>
+
+          <div class="loader-wrap">
+            <div class="spinner">
+              <div class="spinner-ring"></div>
+            </div>
+            <div>
+              <p class="loader-text">Analyzing with AI...</p>
+              <p class="loader-sub">Checking patterns, verifying company</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="about-section" id="about">
+    <div class="section-inner about-inner">
+      <div class="about-text">
+        <div class="section-label">About</div>
+        <h2 class="section-heading">Built to protect job seekers</h2>
+        <p class="about-desc">
+          Fake Job Detector is an AI-powered platform built as a minor project to tackle the growing epidemic of
+          fraudulent job postings. Every year, millions of job seekers lose money and personal data to scammers posing
+          as legitimate employers.
+        </p>
+        <p class="about-desc">
+          Our model is trained on real-world data and uses natural language processing to identify the subtle linguistic
+          patterns that separate genuine job postings from scams — so you can apply with confidence.
+        </p>
+        <div class="about-pills">
+          <span class="about-pill">Machine Learning</span>
+          <span class="about-pill">NLP</span>
+          <span class="about-pill">FastAPI</span>
+          <span class="about-pill">Python</span>
+          <span class="about-pill">SQLite</span>
+        </div>
+      </div>
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <span class="about-stat-num">98.4%</span>
+          <span class="about-stat-label">Model Accuracy</span>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-num">50K+</span>
+          <span class="about-stat-label">Training Samples</span>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-num">6</span>
+          <span class="about-stat-label">Detection Layers</span>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-num">&lt;2s</span>
+          <span class="about-stat-label">Avg. Response</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-logo-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <span>FakeJob<strong>Detector</strong></span>
+      </div>
+      <p class="footer-copy">© 2025 Fake Job Detector. Built with AI to protect job seekers.</p>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/script.js"></script>
+  <script>
+    // ── NAVBAR SCROLL BLUR ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('navbar--scrolled', window.scrollY > 20);
+    });
+
+    // ── MOBILE HAMBURGER ──
+    const hamburger = document.getElementById('navHamburger');
+    const drawer = document.getElementById('navDrawer');
+    hamburger.addEventListener('click', () => {
+      drawer.classList.toggle('nav-drawer--open');
+      hamburger.classList.toggle('nav-hamburger--open');
+    });
+    drawer.querySelectorAll('.nav-drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('nav-drawer--open');
+        hamburger.classList.remove('nav-hamburger--open');
+      });
+    });
+
+    // ── FADE-IN OBSERVER ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+          observer.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.feature-card, .how-step, .about-stat-card').forEach(el => {
+      el.classList.add('fade-up');
+      observer.observe(el);
+    });
+
+    // ── AUTH GUARD ──
+    // Check login status once on page load, then gate every interactive element.
+    let isLoggedIn = false;
+
+    async function checkAuth() {
+      try {
+        const res = await fetch('/auth/me', { credentials: 'include' });
+        const data = await res.json();
+        isLoggedIn = data.ok === true;
+      } catch {
+        isLoggedIn = false;
+      }
+      applyAuthState();
+    }
+
+    function applyAuthState() {
+      if (isLoggedIn) {
+        // Already logged in — update navbar: hide Login/Signup, show Logout
+        const actions = document.querySelector('.nav-actions');
+        const loginBtn = actions.querySelector('.nav-btn-outline');
+        const signupBtn = actions.querySelector('.nav-btn-fill');
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (signupBtn) signupBtn.style.display = 'none';
+
+        const logoutBtn = document.createElement('button');
+        logoutBtn.textContent = 'Logout';
+        logoutBtn.className = 'nav-btn-outline';
+        logoutBtn.style.cursor = 'pointer';
+        logoutBtn.style.border = 'none';
+        logoutBtn.addEventListener('click', async () => {
+          await fetch('/auth/logout', { method: 'POST', credentials: 'include' });
+          window.location.reload();
+        });
+        actions.appendChild(logoutBtn);
+      } else {
+        // Not logged in — intercept ALL buttons and action links
+        guardAllActions();
+      }
+    }
+
+    function guardAllActions() {
+      // Selectors that should require login
+      const actionSelectors = [
+        'a.btn-primary',          // "Analyze a Job" hero CTA
+        'a.btn-ghost',            // "How It Works" CTA
+        'button.btn',             // "Analyze Job Posting" form button
+        'a.nav-btn-fill',         // Signup button in navbar
+        '.footer-links a',        // Footer links
+      ];
+
+      actionSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          el.addEventListener('click', (e) => {
+            // Allow Login link through
+            const href = el.getAttribute('href') || '';
+            if (href === '/login' || href === '/signup' || href.startsWith('#')) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            window.location.href = '/login?next=' + encodeURIComponent(href || '/analyze');
+          }, true); // capture phase so it fires before other listeners
+        });
+      });
+
+      // Also guard the inline analyzer form submit on the homepage
+      const homeForm = document.querySelector('.form');
+      if (homeForm) {
+        homeForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          window.location.href = '/login?next=/analyze';
+        }, true);
+      }
+    }
+
+    // Run on load
+    checkAuth();
+  </script>
+</body>
+
+</html>
